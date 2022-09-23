@@ -1,4 +1,4 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.7
 
 import PackageDescription
 
@@ -11,7 +11,7 @@ let package = Package(
             targets: ["DittoPresenceViewer"]),
     ],
     dependencies: [
-         .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "1.1.0"),
+        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "1.1.0"),
     ],
     targets: [
         .target(
