@@ -14,7 +14,8 @@ let package = Package(
             targets: ["DittoPresenceViewer"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "1.1.0"),
+//        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "1.1.0"),
+        .package(path: "../DittoSwiftPackage")
     ],
     targets: [
         .target(
