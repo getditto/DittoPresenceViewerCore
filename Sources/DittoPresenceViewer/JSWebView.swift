@@ -5,7 +5,15 @@
 import Foundation
 import WebKit
 
-class JSWebView: UIView {
+#if canImport(UIKit)
+import UIKit
+#endif
+
+#if canImport(AppKit)
+import AppKit
+#endif
+
+class JSWebView: PlatformView {
 
     // MARK: - Data Types
 
@@ -54,6 +62,7 @@ class JSWebView: UIView {
     }
 
     private func setup() {
+#if canImport(UIKit)
         if #available(iOS 13.0, *) {
             backgroundColor = .systemBackground
             webView.backgroundColor = .systemBackground
@@ -66,6 +75,9 @@ class JSWebView: UIView {
         webView.isOpaque = false
 
         webView.scrollView.isScrollEnabled = false
+#endif
+#if canImport(AppKit)
+#endif
         webView.navigationDelegate = self
         addSubview(webView)
 
@@ -151,6 +163,7 @@ class JSWebView: UIView {
      We don't want to execute JS commands if we're in the background.
      */
     private func addBackgroundGuards() {
+#if canImport(UIKit)
         let didBecomeActiveObserver = NotificationCenter.default.addObserver(
             forName: UIApplication.didBecomeActiveNotification,
             object: nil,
@@ -162,6 +175,9 @@ class JSWebView: UIView {
             queue: .main) { [weak self] (_) in self?.isBackgrounded = true }
 
         observers = [didBecomeActiveObserver, willResignActiveObserver]
+#endif
+#if canImport(AppKit)
+#endif
     }
 
     private func processPendingInvocations() {

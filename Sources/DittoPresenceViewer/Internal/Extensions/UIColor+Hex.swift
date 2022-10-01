@@ -2,6 +2,7 @@
 //  Copyright © 2020 DittoLive Incorporated. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 extension UIColor {
@@ -56,3 +57,4 @@ extension UIColor {
     }
 
 }
+#endif

@@ -5,8 +5,8 @@ import PackageDescription
 let package = Package(
     name: "DittoPresenceViewer",
     platforms: [
-        .iOS(.v11)
-        // .macOS(.v11)
+        .iOS(.v11),
+        .macOS(.v11),
     ],
     products: [
         .library(
@@ -14,7 +14,7 @@ let package = Package(
             targets: ["DittoPresenceViewer"]),
     ],
     dependencies: [
-//        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "1.1.0"),
+//        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "2.0.8"),
         .package(path: "../DittoSwiftPackage")
     ],
     targets: [
