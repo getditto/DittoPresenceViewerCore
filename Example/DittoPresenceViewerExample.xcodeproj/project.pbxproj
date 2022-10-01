@@ -14,6 +14,7 @@
 		F898670B28E8A7C1001AB409 /* DittoPresenceViewerExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898670A28E8A7C1001AB409 /* DittoPresenceViewerExampleTests.swift */; };
 		F898671528E8A7C1001AB409 /* DittoPresenceViewerExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898671428E8A7C1001AB409 /* DittoPresenceViewerExampleUITests.swift */; };
 		F898671728E8A7C1001AB409 /* DittoPresenceViewerExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898671628E8A7C1001AB409 /* DittoPresenceViewerExampleUITestsLaunchTests.swift */; };
+		F898672528E8A985001AB409 /* DittoPresenceViewer in Frameworks */ = {isa = PBXBuildFile; productRef = F898672428E8A985001AB409 /* DittoPresenceViewer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		F898671028E8A7C1001AB409 /* DittoPresenceViewerExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DittoPresenceViewerExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F898671428E8A7C1001AB409 /* DittoPresenceViewerExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoPresenceViewerExampleUITests.swift; sourceTree = "<group>"; };
 		F898671628E8A7C1001AB409 /* DittoPresenceViewerExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoPresenceViewerExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F898672728E8A995001AB409 /* DittoPresenceViewer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DittoPresenceViewer; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F898672528E8A985001AB409 /* DittoPresenceViewer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +78,7 @@
 		F89866EC28E8A7C0001AB409 = {
 			isa = PBXGroup;
 			children = (
+				F898672628E8A995001AB409 /* Packages */,
 				F89866F728E8A7C0001AB409 /* DittoPresenceViewerExample */,
 				F898670928E8A7C1001AB409 /* DittoPresenceViewerExampleTests */,
 				F898671328E8A7C1001AB409 /* DittoPresenceViewerExampleUITests */,
@@ -129,6 +133,14 @@
 			path = DittoPresenceViewerExampleUITests;
 			sourceTree = "<group>";
 		};
+		F898672628E8A995001AB409 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				F898672728E8A995001AB409 /* DittoPresenceViewer */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +157,9 @@
 			dependencies = (
 			);
 			name = DittoPresenceViewerExample;
+			packageProductDependencies = (
+				F898672428E8A985001AB409 /* DittoPresenceViewer */,
+			);
 			productName = DittoPresenceViewerExample;
 			productReference = F89866F528E8A7C0001AB409 /* DittoPresenceViewerExample.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +232,9 @@
 				Base,
 			);
 			mainGroup = F89866EC28E8A7C0001AB409;
+			packageReferences = (
+				F898672328E8A985001AB409 /* XCRemoteSwiftPackageReference "DittoPresenceViewer" */,
+			);
 			productRefGroup = F89866F628E8A7C0001AB409 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -612,6 +630,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F898672328E8A985001AB409 /* XCRemoteSwiftPackageReference "DittoPresenceViewer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getditto/DittoPresenceViewer";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F898672428E8A985001AB409 /* DittoPresenceViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F898672328E8A985001AB409 /* XCRemoteSwiftPackageReference "DittoPresenceViewer" */;
+			productName = DittoPresenceViewer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F89866ED28E8A7C0001AB409 /* Project object */;
 }
