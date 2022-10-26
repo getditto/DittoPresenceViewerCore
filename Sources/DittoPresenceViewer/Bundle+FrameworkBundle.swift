@@ -6,17 +6,15 @@ import Foundation
 
 extension Bundle {
 
-    static var presenceViewerFrameworkBundle: Bundle {
-        Bundle(for: DittoPresenceView.self)
-    }
-
-    static var presenceViewerBundle: Bundle {
-        // SwiftPM local package includes binary statically, resources end up in DittoPresenceViewer_DittoPresenceViewer.bundle
-//        Bundle(identifier: "DittoPresenceViewer-DittoPresenceViewer-resources")!
-//        Bundle(path: "DittoPresenceViewer_DittoPresenceViewer.bundle")!
-        // Auto-generated for package
+    // https://blog.sabintsev.com/simultaneously-supporting-bundle-resources-in-swift-package-manager-and-cocoapods-3fa35f4bce4e
+    static var presenceViewerResourceBundle: Bundle {
+#if SWIFT_PACKAGE
+        // Auto-generated for swift package
         // https://developer.apple.com/forums/thread/650158?answerId=614513022#614513022
         Bundle.module
+#else
+        Bundle(for: DittoPresenceView.self)
+#endif
     }
 
 }
