@@ -35,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F86DF0052908C6BC0084DBC6 /* DittoPresenceViewer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DittoPresenceViewer; path = ..; sourceTree = "<group>"; };
 		F89866F528E8A7C0001AB409 /* DittoPresenceViewerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DittoPresenceViewerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F89866F828E8A7C0001AB409 /* DittoPresenceViewerExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoPresenceViewerExampleApp.swift; sourceTree = "<group>"; };
 		F89866FA28E8A7C0001AB409 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				F898672728E8A995001AB409 /* DittoPresenceViewer */,
-				F86DF0052908C6BC0084DBC6 /* DittoPresenceViewer */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
