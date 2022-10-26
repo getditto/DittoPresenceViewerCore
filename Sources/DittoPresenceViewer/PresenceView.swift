@@ -20,8 +20,12 @@ import AppKit
 #endif
 
 @available(iOS 13, macOS 10.15, *)
-struct PresenceView: View {
+public struct PresenceView: View {
     public var ditto: Ditto
+
+    public init(ditto: Ditto) {
+        self.ditto = ditto
+    }
 
     var body: some View {
         PresenceView(ditto: ditto)
@@ -32,14 +36,14 @@ struct PresenceView: View {
 #if os(iOS)
 @available(iOS 13, *)
 extension PresenceView: UIViewRepresentable {
-    typealias Body = Never
-    typealias UIViewType = UIView
+    public typealias Body = Never
+    public typealias UIViewType = UIView
 
-    func makeUIView(context: Self.Context) -> Self.UIViewType {
+    public func makeUIView(context: Self.Context) -> Self.UIViewType {
         return DittoPresenceView(ditto: self.ditto)
     }
 
-    func updateUIView(_: Self.UIViewType, context: Self.Context) {
+    public func updateUIView(_: Self.UIViewType, context: Self.Context) {
         return
     }
 }
@@ -49,14 +53,14 @@ extension PresenceView: UIViewRepresentable {
 #if os(macOS)
 @available(macOS 10.15, *)
 extension PresenceView: NSViewRepresentable {
-    typealias Body = Never
-    typealias NSViewType = NSView
+    public typealias Body = Never
+    public typealias NSViewType = NSView
 
-    func makeNSView(context: Self.Context) -> Self.NSViewType {
+    public func makeNSView(context: Self.Context) -> Self.NSViewType {
         return DittoPresenceView(ditto: self.ditto)
     }
 
-    func updateNSView(_: Self.NSViewType, context: Self.Context) {
+    public func updateNSView(_: Self.NSViewType, context: Self.Context) {
         return
     }
 }
