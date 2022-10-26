@@ -2,9 +2,20 @@
 //  Copyright © 2020 DittoLive Incorporated. All rights reserved.
 //
 
-import UIKit
 import WebKit
 import DittoSwift
+
+#if canImport(UIKit)
+import UIKit
+public typealias PlatformView = UIView
+public typealias PlatformViewController = UIViewController
+#endif
+
+#if canImport(AppKit)
+import AppKit
+public typealias PlatformView = NSView
+public typealias PlatformViewController = NSViewController
+#endif
 
 /**
  The `DittoPresenceView` offers a visualization of the current
@@ -30,7 +41,7 @@ import DittoSwift
  }
  ```
  */
-public class DittoPresenceView: UIView {
+public class DittoPresenceView: PlatformView {
 
     // MARK: Public Properties
 
@@ -48,7 +59,7 @@ public class DittoPresenceView: UIView {
     /**
      Returns a `UIViewController` containing this view.
      */
-    public var viewController: UIViewController {
+    public var viewController: PlatformViewController {
         // Note that this is a highly unusual inversion of the typical
         // `UIViewController` → `UIView` relationship based on the original
         // specification for this work(https://github.com/getditto/ditto/issues/789)
@@ -66,7 +77,7 @@ public class DittoPresenceView: UIView {
 
     private var webView = VisJSWebView()
 
-    private lazy var _vc: UIViewController! = DittoPresenceViewController(view: self)
+    private lazy var _vc: PlatformViewController! = DittoPresenceViewController(view: self)
 
     // MARK: Initializer
 
@@ -97,7 +108,9 @@ public class DittoPresenceView: UIView {
     // MARK: Private Functions
 
     private func setup() {
+#if canImport(UIKit)
         backgroundColor = .clear
+#endif
 
         addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false

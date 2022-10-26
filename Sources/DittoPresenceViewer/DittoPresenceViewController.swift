@@ -2,7 +2,13 @@
 //  Copyright © 2020 DittoLive Incorporated. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
+#endif
+
+#if canImport(AppKit)
+import AppKit
+#endif
 
 /**
  The `DittoPresenceViewController` is an internal view controller designed
@@ -26,7 +32,7 @@ import UIKit
    - a close button will be added alongside any swipe to dismiss gestures to
      ensure that the modal view is accessible to assistive technologies.
  */
-final class DittoPresenceViewController: UIViewController {
+final class DittoPresenceViewController: PlatformViewController {
 
     // MARK: Constants
 
@@ -38,6 +44,7 @@ final class DittoPresenceViewController: UIViewController {
 
     // MARK: - Properties
 
+#if canImport(UIKit)
     /**
      A close button added to the navigation bar when we are modally presented
      in some manner that doesn't allow an iOS 13 modal sheet drag to dismiss
@@ -55,13 +62,16 @@ final class DittoPresenceViewController: UIViewController {
      being presented within a `UINavigationController`.
      */
     private lazy var navigationBar: UINavigationBar! = UINavigationBar()
+#endif
 
     // MARK: - Initialization
 
     init(view: DittoPresenceView) {
         super.init(nibName: nil, bundle: nil)
         self.view = view
+#if canImport(UIKit)
         self.modalPresentationStyle = .fullScreen
+#endif
     }
 
     required init?(coder: NSCoder) {
@@ -75,19 +85,32 @@ final class DittoPresenceViewController: UIViewController {
 
         title = LocalizedStrings.title
 
+#if canImport(UIKit)
         if #available(iOS 13.0, *) {
             view.backgroundColor = .systemBackground
         } else {
             view.backgroundColor = .white
         }
+#endif
     }
 
+#if canImport(UIKit)
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         addStandaloneNavigationBarIfNeeded()
         addCloseButtonIfNeeded()
     }
+#endif
+
+#if canImport(AppKit)
+    override func viewWillAppear() {
+        super.viewWillAppear()
+
+        addStandaloneNavigationBarIfNeeded()
+        addCloseButtonIfNeeded()
+    }
+#endif
 
     // MARK: - Private Functions
 
@@ -100,6 +123,7 @@ final class DittoPresenceViewController: UIViewController {
      of one. We expect to be displayed in the same context each time.
      */
     private func addStandaloneNavigationBarIfNeeded() {
+#if canImport(UIKit)
         guard navigationController == nil else { return }
 
         navigationItem.title = LocalizedStrings.title
@@ -113,6 +137,7 @@ final class DittoPresenceViewController: UIViewController {
             navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)])
         navigationBar.items = [navigationItem]
         navigationBar.delegate = self
+#endif
     }
 
     /**
@@ -123,6 +148,7 @@ final class DittoPresenceViewController: UIViewController {
                      a button there, or if a system-provided back button exists.
      */
     private func addCloseButtonIfNeeded() {
+#if canImport(UIKit)
         if let navigationController = navigationController,
             navigationController.viewControllers.count > 1,
             !navigationController.navigationItem.hidesBackButton {
@@ -135,6 +161,7 @@ final class DittoPresenceViewController: UIViewController {
 
         navigationItem.leftBarButtonItem = leftNavButton
         navigationBar.setNeedsDisplay()
+#endif
     }
 
     /**
@@ -144,11 +171,17 @@ final class DittoPresenceViewController: UIViewController {
      to our parent in this case.
      */
     @objc private func close() {
+#if canImport(UIKit)
         dismiss(animated: true)
+#endif
+#if canImport(AppKit)
+        dismiss(self)
+#endif
     }
 
 }
 
+#if canImport(UIKit)
 // MARK: - UINavigationBarDelegate
 
 extension DittoPresenceViewController: UINavigationBarDelegate {
@@ -164,3 +197,4 @@ extension DittoPresenceViewController: UINavigationBarDelegate {
     }
 
 }
+#endif
