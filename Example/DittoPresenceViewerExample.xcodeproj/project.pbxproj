@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F86DF0052908C6BC0084DBC6 /* DittoPresenceViewer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DittoPresenceViewer; path = ..; sourceTree = "<group>"; };
 		F89866F528E8A7C0001AB409 /* DittoPresenceViewerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DittoPresenceViewerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F89866F828E8A7C0001AB409 /* DittoPresenceViewerExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoPresenceViewerExampleApp.swift; sourceTree = "<group>"; };
 		F89866FA28E8A7C0001AB409 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				F898672728E8A995001AB409 /* DittoPresenceViewer */,
+				F86DF0052908C6BC0084DBC6 /* DittoPresenceViewer */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -155,6 +157,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F849468328E8ABE700F10ED1 /* PBXTargetDependency */,
 			);
 			name = DittoPresenceViewerExample;
 			packageProductDependencies = (
@@ -302,6 +305,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F849468328E8ABE700F10ED1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = F849468228E8ABE700F10ED1 /* DittoPresenceViewer */;
+		};
 		F898670828E8A7C1001AB409 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F89866F428E8A7C0001AB409 /* DittoPresenceViewerExample */;
@@ -655,6 +662,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F849468228E8ABE700F10ED1 /* DittoPresenceViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DittoPresenceViewer;
+		};
 		F898672428E8A985001AB409 /* DittoPresenceViewer */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F898672328E8A985001AB409 /* XCRemoteSwiftPackageReference "DittoPresenceViewer" */;
