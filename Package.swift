@@ -26,6 +26,9 @@ let package = Package(
                 .copy("Resources/index.html"),
                 .copy("Resources/main.css"),
                 .copy("Resources/main.js"),
+            ],
+            cxxSettings: [
+                .define("ENABLE_BITCODE", to: "NO")
             ]
         ),
         .testTarget(
