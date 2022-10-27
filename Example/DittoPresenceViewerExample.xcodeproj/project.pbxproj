@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F80864F4290B24B700622DFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F89866F528E8A7C0001AB409 /* DittoPresenceViewerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DittoPresenceViewerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F89866F828E8A7C0001AB409 /* DittoPresenceViewerExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoPresenceViewerExampleApp.swift; sourceTree = "<group>"; };
 		F89866FA28E8A7C0001AB409 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		F89866F728E8A7C0001AB409 /* DittoPresenceViewerExample */ = {
 			isa = PBXGroup;
 			children = (
+				F80864F4290B24B700622DFB /* Info.plist */,
 				F89866F828E8A7C0001AB409 /* DittoPresenceViewerExampleApp.swift */,
 				F89866FA28E8A7C0001AB409 /* ContentView.swift */,
 				F89866FC28E8A7C1001AB409 /* Assets.xcassets */,
@@ -447,6 +449,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DittoPresenceViewerExample/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -488,6 +491,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DittoPresenceViewerExample/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
