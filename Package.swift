@@ -1,4 +1,6 @@
-// swift-tools-version: 5.8.1
+// swift-tools-version: 5.11
+
+// tools 5.11 is required to access shared resources outside of the target's Sources directory (see https://github.com/swiftlang/swift-package-manager/issues/6982)
 
 import PackageDescription
 
@@ -16,7 +18,7 @@ let package = Package(
             targets: ["DittoPresenceViewer"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "4.8.0")
+        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "4.8.0") // 4.8.0 is required for peerKeyString in presence data
     ],
     targets: [
         .target(
@@ -24,10 +26,10 @@ let package = Package(
             dependencies: [
                 .product(name: "DittoSwift", package: "DittoSwiftPackage")
             ],
+            path: "Swift/Sources/DittoPresenceViewer",
             resources: [
-                .copy("Resources/index.html"),
-                .copy("Resources/main.css"),
-                .copy("Resources/main.js"),
+                .process("../../../Shared"),
+                .process("Resources")
             ]
         )
     ]
