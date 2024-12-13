@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PresenceView.swift
 //  
 //
 //  Created by Ben Chatelain on 9/23/22.
@@ -19,7 +19,8 @@ import UIKit
 import AppKit
 #endif
 
-@available(iOS 13, macOS 10.15, *)
+#if canImport(WebKit)
+@available(macOS 10.15, *)
 public struct PresenceView: View {
     public var ditto: Ditto
 
@@ -27,14 +28,14 @@ public struct PresenceView: View {
         self.ditto = ditto
     }
 
-    var body: some View {
+    public var body: some View {
         PresenceView(ditto: ditto)
     }
 }
+#endif
 
 // MARK: - UIViewRepresentable
 #if os(iOS)
-@available(iOS 13, *)
 extension PresenceView: UIViewRepresentable {
     public typealias Body = Never
     public typealias UIViewType = UIView

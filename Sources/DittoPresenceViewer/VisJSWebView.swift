@@ -3,7 +3,10 @@
 //
 
 import Foundation
+
+#if canImport(WebKit)
 import WebKit
+#endif
 
 /**
  `VisJSWebView` is a simple `UIView` subclass containing a `WKWebView` which it
@@ -25,11 +28,13 @@ class VisJSWebView: JSWebView {
     }
 
     private func setup() {
-        let bundle = Bundle.presenceViewerResourceBundle
-        let webDistURL = bundle.bundleURL
+        let bundle = Bundle.module
+        let webDistDirURL = bundle.bundleURL.appendingPathComponent("dist")
         let htmlURL = bundle.url(forResource: "index", withExtension: "html")!
         let htmlString = try! String(contentsOf: htmlURL, encoding: .utf8)
-        webView.loadHTMLString(htmlString, baseURL: webDistURL)
+#if canImport(WebKit)
+        webView.loadHTMLString(htmlString, baseURL: webDistDirURL)
+#endif
     }
 
     // MARK: - Functions

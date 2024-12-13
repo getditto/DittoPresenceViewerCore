@@ -3,7 +3,9 @@
 //
 
 import Foundation
+#if canImport(WebKit)
 import WebKit
+#endif
 
 #if canImport(UIKit)
 import UIKit
@@ -32,7 +34,9 @@ class JSWebView: PlatformView {
 
     // MARK: - Internal Properties
 
+    #if canImport(WebKit)
     let webView = WKWebView()
+    #endif
 
 
     // MARK: - Private Properties
@@ -62,16 +66,11 @@ class JSWebView: PlatformView {
     }
 
     private func setup() {
+#if canImport(WebKit)
 #if canImport(UIKit)
-        if #available(iOS 13.0, *) {
-            backgroundColor = .systemBackground
-            webView.backgroundColor = .systemBackground
-            webView.scrollView.backgroundColor = .systemBackground
-        } else {
-            backgroundColor = .white
-            webView.backgroundColor = .white
-            webView.scrollView.backgroundColor = .white
-        }
+        backgroundColor = .systemBackground
+        webView.backgroundColor = .systemBackground
+        webView.scrollView.backgroundColor = .systemBackground
         webView.isOpaque = false
 
         webView.scrollView.isScrollEnabled = false
@@ -88,6 +87,7 @@ class JSWebView: PlatformView {
             webView.topAnchor.constraint(equalTo: topAnchor),
             webView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+#endif
         addBackgroundGuards()
     }
 
@@ -118,6 +118,7 @@ class JSWebView: PlatformView {
 
             guard let error = error else { return }
             let nsError = error as NSError
+            #if canImport(WebKit)
             guard nsError.domain == WKErrorDomain, let code = WKError.Code(rawValue: nsError.code) else { return }
 
             switch code {
@@ -143,6 +144,7 @@ class JSWebView: PlatformView {
                 // .attributedStringContentLoadTimedOut (iOS 13)
                 break
             }
+            #endif
         }
 
         if let coalescingIdentifier = coalescingIdentifier {
@@ -183,9 +185,11 @@ class JSWebView: PlatformView {
     private func processPendingInvocations() {
         guard isInitialLoadComplete, !isBackgrounded else { return }
 
+        #if canImport(WebKit)
         pendingInvocations.forEach {
             webView.evaluateJavaScript($0.javascript, completionHandler: $0.completionHandler)
         }
+        #endif
 
         pendingInvocations.removeAll()
     }
@@ -193,7 +197,7 @@ class JSWebView: PlatformView {
 }
 
 //MARK: - WKNavigationDelegate
-
+#if canImport(WebKit)
 extension JSWebView: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -203,5 +207,5 @@ extension JSWebView: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print("JSWebView: didFailNavigationWithError: %@", error)
     }
-
 }
+#endif

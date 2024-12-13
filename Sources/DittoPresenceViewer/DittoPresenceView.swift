@@ -2,7 +2,10 @@
 //  Copyright © 2020 DittoLive Incorporated. All rights reserved.
 //
 
+#if canImport(WebKit)
 import WebKit
+#endif
+
 import DittoSwift
 
 #if canImport(UIKit)
@@ -11,10 +14,12 @@ public typealias PlatformView = UIView
 public typealias PlatformViewController = UIViewController
 #endif
 
+#if !targetEnvironment(macCatalyst)
 #if canImport(AppKit)
 import AppKit
 public typealias PlatformView = NSView
 public typealias PlatformViewController = NSViewController
+#endif
 #endif
 
 /**
@@ -52,7 +57,7 @@ public class DittoPresenceView: PlatformView {
      */
     public var ditto: Ditto? {
         didSet {
-            observePeers()
+            observePresence()
         }
     }
 
@@ -92,7 +97,7 @@ public class DittoPresenceView: PlatformView {
         self.ditto = ditto
 
         setup()
-        observePeers()
+        observePresence()
     }
 
     public override init(frame: CGRect) {
@@ -122,11 +127,20 @@ public class DittoPresenceView: PlatformView {
         ])
     }
 
-    private func observePeers() {
+    private func observePresence() {
         if let ditto = ditto {
-            peersObserver = ditto.observePeersV2() { [weak self] json in
-                DispatchQueue.main.async {
-                    self?.webView.updateNetwork(json: json, completionHandler: nil)
+            peersObserver = ditto.presence.observe { presenceGraph in
+                let encoder = JSONEncoder()
+                encoder.dataEncodingStrategy = .custom({ data, enc in
+                    var container = enc.unkeyedContainer()
+                    data.forEach { byte in
+                        try! container.encode(byte)
+                    }
+                })
+                let presenceGraphJSON = try! encoder.encode(presenceGraph)
+                let presenceGraphJSONString = String(data: presenceGraphJSON, encoding: .utf8)!
+                DispatchQueue.main.async { [weak self] in
+                    self?.webView.updateNetwork(json: presenceGraphJSONString, completionHandler: nil)
                 }
             }
         }
