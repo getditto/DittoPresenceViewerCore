@@ -28,7 +28,9 @@ let package = Package(
             ],
             path: "Swift/Sources/DittoPresenceViewer",
             resources: [
-                .copy("../../../Shared"),
+                .copy("../../../Shared/index.html"),
+                .copy("../../../Shared/main.css"),
+                .copy("../../../Shared/main.js"),
                 .copy("Resources") // required to avoid Xcode erroring with "Type 'Bundle' has no member 'module'". The real resources are shared across all languages, and found at the package root in "Shared"
             ]
         )
