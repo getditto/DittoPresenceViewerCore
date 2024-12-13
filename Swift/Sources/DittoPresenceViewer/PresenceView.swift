@@ -20,7 +20,6 @@ import AppKit
 #endif
 
 #if canImport(WebKit)
-@available(macOS 10.15, *)
 public struct PresenceView: View {
     public var ditto: Ditto
 
@@ -52,7 +51,6 @@ extension PresenceView: UIViewRepresentable {
 
 // MARK: - NSViewRepresentable
 #if os(macOS)
-@available(macOS 10.15, *)
 extension PresenceView: NSViewRepresentable {
     public typealias Body = Never
     public typealias NSViewType = NSView
