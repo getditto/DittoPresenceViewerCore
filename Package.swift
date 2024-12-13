@@ -1,6 +1,4 @@
-// swift-tools-version: 5.11
-
-// tools 5.11 is required to access shared resources outside of the target's Sources directory (see https://github.com/swiftlang/swift-package-manager/issues/6982)
+// swift-tools-version: 5.8.1
 
 import PackageDescription
 
@@ -28,10 +26,7 @@ let package = Package(
             ],
             path: "Swift/Sources/DittoPresenceViewer",
             resources: [
-                .copy("../../../Shared/index.html"),
-                .copy("../../../Shared/main.css"),
-                .copy("../../../Shared/main.js"),
-                .copy("Resources") // required to avoid Xcode erroring with "Type 'Bundle' has no member 'module'". The real resources are shared across all languages, and found at the package root in "Shared"
+                .copy("Resources")
             ]
         )
     ]

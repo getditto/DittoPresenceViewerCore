@@ -29,8 +29,8 @@ class VisJSWebView: JSWebView {
 
     private func setup() {
         let bundle = Bundle.module
-        let webDistDirURL = bundle.bundleURL.appendingPathComponent("dist")
-        let htmlURL = bundle.url(forResource: "index", withExtension: "html")!
+        let webDistDirURL = bundle.bundleURL.appendingPathComponent("Resources/dist")
+        let htmlURL = bundle.url(forResource: "Resources/index", withExtension: "html")!
         let htmlString = try! String(contentsOf: htmlURL, encoding: .utf8)
 #if canImport(WebKit)
         webView.loadHTMLString(htmlString, baseURL: webDistDirURL)

@@ -1,3 +1,0 @@
-This file is required to avoid Xcode erroring with "Type 'Bundle' has no member 'module'"
-
-The real resources are shared across all languages, and found at the package root in "Shared"
