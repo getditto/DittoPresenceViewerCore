@@ -1,12 +1,14 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.8.1
 
 import PackageDescription
 
 let package = Package(
     name: "DittoPresenceViewer",
     platforms: [
-        .iOS(.v11),
+        .iOS(.v14),
         .macOS(.v11),
+        .macCatalyst(.v14),
+        .tvOS(.v14)
     ],
     products: [
         .library(
@@ -14,7 +16,7 @@ let package = Package(
             targets: ["DittoPresenceViewer"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "3.0.0")
+        .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "4.8.0") // 4.8.0 is required for peerKeyString in presence data
     ],
     targets: [
         .target(
@@ -22,14 +24,10 @@ let package = Package(
             dependencies: [
                 .product(name: "DittoSwift", package: "DittoSwiftPackage")
             ],
+            path: "Swift/Sources/DittoPresenceViewer",
             resources: [
-                .copy("Resources/index.html"),
-                .copy("Resources/main.css"),
-                .copy("Resources/main.js"),
+                .copy("Resources")
             ]
-        ),
-        .testTarget(
-            name: "DittoPresenceViewerTests",
-            dependencies: ["DittoPresenceViewer"]),
+        )
     ]
 )
