@@ -1,6 +1,6 @@
 //
 //  PresenceView.swift
-//  
+//
 //
 //  Created by Ben Chatelain on 9/23/22.
 //
@@ -20,47 +20,43 @@ import AppKit
 #endif
 
 #if canImport(WebKit)
+@available(macOS 10.15, *)
 public struct PresenceView: View {
-    public var ditto: Ditto
+    private var ditto: Ditto
 
     public init(ditto: Ditto) {
         self.ditto = ditto
     }
 
     public var body: some View {
-        PresenceView(ditto: ditto)
+        DittoPresenceViewRepresentable(ditto: ditto)
     }
 }
-#endif
 
 // MARK: - UIViewRepresentable
 #if os(iOS)
-extension PresenceView: UIViewRepresentable {
-    public typealias Body = Never
-    public typealias UIViewType = UIView
+private struct DittoPresenceViewRepresentable: UIViewRepresentable {
+    let ditto: Ditto
 
-    public func makeUIView(context: Self.Context) -> Self.UIViewType {
-        return DittoPresenceView(ditto: self.ditto)
+    func makeUIView(context: Context) -> UIView {
+        return DittoPresenceView(ditto: ditto)
     }
 
-    public func updateUIView(_: Self.UIViewType, context: Self.Context) {
-        return
+    func updateUIView(_ uiView: UIView, context: Context) {
+    }
+}
+
+// MARK: - NSViewRepresentable
+#elseif os(macOS)
+private struct DittoPresenceViewRepresentable: NSViewRepresentable {
+    let ditto: Ditto
+
+    func makeNSView(context: Context) -> NSView {
+        return DittoPresenceView(ditto: ditto)
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
     }
 }
 #endif
-
-// MARK: - NSViewRepresentable
-#if os(macOS)
-extension PresenceView: NSViewRepresentable {
-    public typealias Body = Never
-    public typealias NSViewType = NSView
-
-    public func makeNSView(context: Self.Context) -> Self.NSViewType {
-        return DittoPresenceView(ditto: self.ditto)
-    }
-
-    public func updateNSView(_: Self.NSViewType, context: Self.Context) {
-        return
-    }
-}
 #endif
