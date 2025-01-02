@@ -36,13 +36,13 @@ public typealias PlatformViewController = NSViewController
  let ditto: Ditto
 
  func showPresence() {
-      let presenceView = DittoPresenceView(ditto: ditto)
-      // maybe add it to an existing view
-      self.view.addSubview(presenceView)
+ let presenceView = DittoPresenceView(ditto: ditto)
+ // maybe add it to an existing view
+ self.view.addSubview(presenceView)
 
-      // or add it as a view controller
-      let viewController = DittoPresenceView(ditto: ditto).viewController
-      present(viewController: viewController, animated: true)
+ // or add it as a view controller
+ let viewController = DittoPresenceView(ditto: ditto).viewController
+ present(viewController: viewController, animated: true)
  }
  ```
  */
@@ -55,10 +55,24 @@ public class DittoPresenceView: PlatformView {
      The `DittoPresenceView` will not display any presence information
      until the `ditto` property has been set.
      */
-    public var ditto: Ditto? {
-        didSet {
-            observePresence()
+    public weak var ditto: Ditto? {
+        willSet {
+            if (ditto !== newValue) {
+                self.stopObservingPresence()
+            }
         }
+
+        didSet {
+            if (oldValue !== ditto) {
+                self.startObservingPresence()
+            }
+        }
+    }
+
+    deinit {
+        stopObservingPresence()
+        webView.removeFromSuperview()
+        _vc = nil
     }
 
     /**
@@ -73,7 +87,17 @@ public class DittoPresenceView: PlatformView {
         // The inversion will likely trip up more experienced native iOS
         // developers, but they're also the group likely to be designing their
         // own `UIViewControllers` which renders this a non-issue in most cases.
-        return _vc
+        //
+        // Also note that we can't hold the view controller strongly here because
+        // this would lead to a retain cycle. Therefore, we'll hold it weakly
+        // and create a new one whenever the previous one is dealloced:
+        if let vc = self._vc {
+            return vc
+        }
+
+        let vc = DittoPresenceViewController(view: self)
+        self._vc = vc
+        return vc
     }
 
     // MARK: Private Properties
@@ -82,7 +106,7 @@ public class DittoPresenceView: PlatformView {
 
     private var webView = VisJSWebView()
 
-    private lazy var _vc: PlatformViewController! = DittoPresenceViewController(view: self)
+    private weak var _vc: DittoPresenceViewController?
 
     // MARK: Initializer
 
@@ -90,14 +114,12 @@ public class DittoPresenceView: PlatformView {
      Initializes a new `DittoPresenceView`.
 
      - Parameter ditto: A reference to the `Ditto` which you would like
-       to visualize presence status for.
+     to visualize presence status for.
      */
     public convenience init(ditto: Ditto) {
         self.init(frame: .zero)
         self.ditto = ditto
-
-        setup()
-        observePresence()
+        startObservingPresence()
     }
 
     public override init(frame: CGRect) {
@@ -110,9 +132,11 @@ public class DittoPresenceView: PlatformView {
         setup()
     }
 
+
     // MARK: Private Functions
 
     private func setup() {
+
 #if canImport(UIKit)
         backgroundColor = .clear
 #endif
@@ -127,9 +151,9 @@ public class DittoPresenceView: PlatformView {
         ])
     }
 
-    private func observePresence() {
+    private func startObservingPresence() {
         if let ditto = ditto {
-            peersObserver = ditto.presence.observe { presenceGraph in
+            self.peersObserver = ditto.presence.observe { presenceGraph in
                 let encoder = JSONEncoder()
                 encoder.dataEncodingStrategy = .custom({ data, enc in
                     var container = enc.unkeyedContainer()
@@ -144,16 +168,19 @@ public class DittoPresenceView: PlatformView {
                 }
             }
         }
-
-//        // Comment out the ditto observer above and toggle following to test presence with
-//        // fake data. Several different mock drivers exist:
-//        // - runFrequentConnectionChanges()
-//        // - runFrequentRSSIChanges()
-//        // - runLargeMesh()
-//        // - runMassiveMesh()
-//        MockData.runLargeMesh() { [weak self] json in
-//            self?.webView.updateNetwork(json: json, completionHandler: nil)
-//        }
+        //        // Comment out the ditto observer above and toggle following to test presence with
+        //        // fake data. Several different mock drivers exist:
+        //        // - runFrequentConnectionChanges()
+        //        // - runFrequentRSSIChanges()
+        //        // - runLargeMesh()
+        //        // - runMassiveMesh()
+        //        MockData.runLargeMesh() { [weak self] json in
+        //            self?.webView.updateNetwork(json: json, completionHandler: nil)
+        //        }
     }
 
+    private func stopObservingPresence() {
+        peersObserver?.stop()
+        peersObserver = nil
+    }
 }
