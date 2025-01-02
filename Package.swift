@@ -12,7 +12,7 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "DittoPresenceViewer",
+            name: "DittoPresence",
             targets: ["DittoPresenceViewer"]),
     ],
     dependencies: [
@@ -20,13 +20,16 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "DittoPresenceViewer",
+            name: "DittoPresence",
             dependencies: [
                 .product(name: "DittoSwift", package: "DittoSwiftPackage")
             ],
             path: "Swift/Sources/DittoPresenceViewer",
             resources: [
                 .copy("Resources")
+            ],
+            cxxSettings: [
+                .define("ENABLE_BITCODE", to: "NO")
             ]
         )
     ]
