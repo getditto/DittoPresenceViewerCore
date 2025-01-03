@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "DittoPresenceViewer",
+    name: "DittoPresence",
     platforms: [
         .iOS(.v14),
         .macOS(.v11),
@@ -13,7 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "DittoPresence",
-            targets: ["DittoPresenceViewer"]),
+            targets: ["DittoPresence"]),
     ],
     dependencies: [
         .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "4.8.0") // 4.8.0 is required for peerKeyString in presence data
