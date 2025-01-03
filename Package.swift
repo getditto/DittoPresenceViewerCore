@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "DittoPresence",
+    name: "DittoPresenceViewer",
     platforms: [
         .iOS(.v14),
         .macOS(.v11),
