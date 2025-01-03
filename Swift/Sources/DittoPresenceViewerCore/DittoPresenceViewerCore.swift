@@ -7,6 +7,6 @@
 import Foundation
 
 public struct DittoPresenceViewerResources {
-    public let webDistDirURL = Bundle.module.bundleURL.appendingPathComponent("Resources/dist")
-    public let htmlURL = Bundle.module.url(forResource: "Resources/index", withExtension: "html")!
+    public static let webDistDirURL = Bundle.module.bundleURL.appendingPathComponent("Resources/dist")
+    public static let htmlURL = Bundle.module.url(forResource: "Resources/index", withExtension: "html")!
 }
