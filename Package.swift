@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "DittoPresenceViewer",
+    name: "DittoPresenceViewerCore",
     platforms: [
         .iOS(.v14),
         .macOS(.v11),
@@ -12,21 +12,26 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "DittoPresenceViewer",
-            targets: ["DittoPresenceViewer"]),
+            name: "DittoPresenceViewerCore",
+            targets: ["DittoPresenceViewerCore"]),
     ],
     dependencies: [
         .package(url: "https://github.com/getditto/DittoSwiftPackage", from: "4.8.0") // 4.8.0 is required for peerKeyString in presence data
     ],
     targets: [
         .target(
-            name: "DittoPresenceViewer",
+            name: "DittoPresenceViewerCore",
             dependencies: [
                 .product(name: "DittoSwift", package: "DittoSwiftPackage")
             ],
-            path: "Swift/Sources/DittoPresenceViewer",
+            path: "Swift/Sources/DittoPresenceViewerCore",
             resources: [
-                .copy("Resources")
+                .copy("Resources/index.html"),
+                .copy("Resources/main.css"),
+                .copy("Resources/main.js")
+            ],
+            cxxSettings: [
+                .define("ENABLE_BITCODE", to: "NO")
             ]
         )
     ]
