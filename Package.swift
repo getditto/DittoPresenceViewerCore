@@ -25,7 +25,7 @@ let package = Package(
                 .product(name: "DittoSwift", package: "DittoSwiftPackage")
             ],
             path: "Swift/Sources/DittoPresenceViewerCore",
-            resources: [
+            resources: [ // Copied from the "Shared" folder at the root of the repository.
                 .copy("../../../Shared/index.html"),
                 .copy("../../../Shared/main.css"),
                 .copy("../../../Shared/main.js")
