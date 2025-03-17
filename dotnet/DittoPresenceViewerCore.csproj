@@ -21,7 +21,7 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>Ditto;Sync;Edge;PeerToPeer;P2P;Mesh;MAUI;.NET;iOS;Android;Debug;Diagnostic;Tools;Presence;PresenceViewer</PackageTags>
 		<PackageIcon>icon.png</PackageIcon>
-		<PackageProjectUrl>https://ditto.live</PackageProjectUrl>
+		<PackageProjectUrl>https://ditto.com</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/getditto/DittoPresenceViewerCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 
