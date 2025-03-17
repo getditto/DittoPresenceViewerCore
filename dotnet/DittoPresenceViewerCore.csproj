@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;</TargetFrameworks>
+		<!-- <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks> -->
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+
+		<RootNamespace>DittoPresenceViewerCore</RootNamespace>
+		<PackageID>DittoPresenceViewerCore</PackageID>
+		<Version>1.0.0-pre.1</Version>
+		<Description>Presence Viewer Resources for Ditto.</Description>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageTags>Ditto;Sync;Edge;PeerToPeer;P2P;Mesh;MAUI;.NET;iOS;Android;Debug;Diagnostic;Tools;Presence;PresenceViewer</PackageTags>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageProjectUrl>https://ditto.live</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/getditto/DittoDotnetTools</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<_DittoIncludeNativeAndroidLibs>False</_DittoIncludeNativeAndroidLibs>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="../LICENSE" Pack="true" PackagePath="\" />
+		<None Include="../icon.png" Pack="true" PackagePath="\" />
+  	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Ditto" Version="4.7.1" />
+	</ItemGroup>
+	<!-- Resources - Packaging -->
+	<ItemGroup>
+  		<None Include="DittoPresenceViewerCore.targets" Pack="True" PackagePath="buildTransitive\" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\Shared\**" Pack="True" PackagePath="buildTransitive\Resources\Presence\" />
+	</ItemGroup>
+</Project>
