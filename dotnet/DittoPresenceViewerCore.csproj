@@ -16,7 +16,7 @@
 
 		<RootNamespace>DittoPresenceViewerCore</RootNamespace>
 		<PackageID>DittoPresenceViewerCore</PackageID>
-		<Version>2.1.0</Version>
+		<Version>2.2.0</Version>
 		<Description>Presence Viewer Resources for Ditto.</Description>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>Ditto;Sync;Edge;PeerToPeer;P2P;Mesh;MAUI;.NET;iOS;Android;Debug;Diagnostic;Tools;Presence;PresenceViewer</PackageTags>
