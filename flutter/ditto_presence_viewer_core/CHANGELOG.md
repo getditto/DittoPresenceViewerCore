@@ -1,3 +1,3 @@
-## 0.0.1
+## 2.2.0
 
-* TODO: Describe initial release.
+* Initial release of DittoPresenceViewerCore for Flutter.

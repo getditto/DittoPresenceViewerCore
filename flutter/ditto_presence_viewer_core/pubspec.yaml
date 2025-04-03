@@ -24,7 +24,7 @@ flutter:
 
   # To add assets to your package, add an assets section, like this:
   assets:
-    - ../Shared/
+    - lib/assets/ # Can we reference a path outside of the package? Probably not?
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/to/asset-from-package
