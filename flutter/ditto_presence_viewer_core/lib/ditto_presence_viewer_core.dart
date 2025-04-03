@@ -1,5 +1,3 @@
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+/// A Dummy dart class - this package serves to vend HTML & JS content only
+class DittoPresenceViewerCore {
 }

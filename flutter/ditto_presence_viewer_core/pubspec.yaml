@@ -1,5 +1,5 @@
 name: ditto_presence_viewer_core
-description: "The core web view code used for the Ditto Presence Viewer."
+description: "The core web view code used for the Ditto Presence Viewer. Intended to be used transitively via ditto_flutter_tools, not as a standalone flutter package."
 version: 2.2.0
 homepage: "https://ditto.live"
 
