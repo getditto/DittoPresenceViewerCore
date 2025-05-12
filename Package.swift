@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8.1
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -25,10 +25,10 @@ let package = Package(
                 .product(name: "DittoSwift", package: "DittoSwiftPackage")
             ],
             path: "Swift/Sources/DittoPresenceViewerCore",
-            resources: [
-                .copy("Resources/index.html"),
-                .copy("Resources/main.css"),
-                .copy("Resources/main.js")
+            resources: [ // Copied from the "Shared" folder at the root of the repository.
+                .copy("../../../Shared/index.html"),
+                .copy("../../../Shared/main.css"),
+                .copy("../../../Shared/main.js")
             ],
             cxxSettings: [
                 .define("ENABLE_BITCODE", to: "NO")
