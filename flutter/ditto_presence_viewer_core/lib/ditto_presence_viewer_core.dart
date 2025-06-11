@@ -1,2 +1,2 @@
-/// A Dummy dart class - this package serves to vend HTML & JS content only
-class DittoPresenceViewerCore {}
+/// A library which vends the Ditto Presence Viewer shared JS & HTML code
+library;
